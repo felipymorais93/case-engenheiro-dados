@@ -1,4 +1,4 @@
-# Silver — limpeza, normalização e deduplicação
+# Silver: limpeza, normalização e deduplicação
 
 A camada Silver aplica as correções de formatação, deduplicação e padronização identificadas na análise da Bronze. Cada fonte possui um notebook dedicado (`02_silver_regioes` a `09_silver_ocorrencias`).
 
@@ -10,10 +10,10 @@ Clientes, vendedores e entregas representam estado/região com grafias distintas
 
 Toda duplicidade é resolvida por um critério definido e auditável, nunca pela ordem de leitura do arquivo. Critérios aplicados, em ordem de prioridade:
 
-- **Atualização mais recente** (`updated_at`), quando a fonte tem esse campo (produtos, clientes).
-- **Score de qualidade** (quantos campos críticos vieram válidos), quando não há campo de atualização (pedidos).
-- **Critério de desempate secundário** quando o campo de atualização é idêntico entre as versões (cliente `C0051`: e-mail válido prevalece sobre e-mail inválido). Necessário porque, sem esse critério, o resultado dependeria da ordem física de processamento no cluster, que não é determinística em Spark distribuído.
-- **Valor de referência definido manualmente** quando a divergência não é resolvível por transformação automática de string (canal `CH05`: "E-commerce" e "ecommerce" diferem pela presença do hífen, não apenas pela capitalização — `initcap()` não normaliza esse caso).
+- Data de `updated_at` mais recente, quando a fonte possui esse campo (produtos, clientes).
+- Score de qualidade (quantidade de campos críticos válidos), quando não há campo de atualização (pedidos).
+- Desempate secundário quando `updated_at` é idêntico entre as versões: no cliente `C0051`, e-mail válido prevalece sobre e-mail inválido. Sem esse critério, o resultado dependeria da ordem física de processamento no cluster, que não é determinística em Spark distribuído.
+- Valor de referência definido manualmente, quando a divergência não é resolvível por transformação de string: no canal `CH05`, "E-commerce" e "ecommerce" diferem pela presença do hífen, não pela capitalização. `initcap()` não resolve esse caso.
 
 ## Itens sem cadastro de produto correspondente
 
