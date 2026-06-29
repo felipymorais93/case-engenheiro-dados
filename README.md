@@ -13,6 +13,21 @@ Pipeline de engenharia de dados em camadas (Bronze → Silver → Gold), constru
 
 Os notebooks também podem ser executados manualmente, um a um, na ordem numérica das pastas.
 
+## Exemplo de saída
+
+Resultado real de `vw_dim_vendedor` após a execução completa da pipeline:
+
+![Saída de dim_vendedor](diagrams/exemplo_saida_gold.png)
+
+Amostra de `vw_dim_cliente`:
+
+| customer_id | nome_cliente | segmento_cliente | porte_cliente | cidade | estado_uf | regiao | status_cliente |
+|---|---|---|---|---|---|---|---|
+| C0001 | Cliente 1 | Não informado | Grande | Florianópolis | SC | Sul | Não informado |
+| C0002 | Cliente 2 | Educação | Grande | Curitiba | PR | Sul | Ativo |
+| C0003 | Cliente 3 | Varejo | Não informado | Curitiba | PR | Sul | Não informado |
+| C0004 | Cliente 4 | Saúde | Não informado | Uberlândia | MG | Sudeste | Não informado |
+
 ## Documentação
 
 | Arquivo | Conteúdo |
