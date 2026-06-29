@@ -15,18 +15,47 @@ Os notebooks também podem ser executados manualmente, um a um, na ordem numéri
 
 ## Exemplo de saída
 
-Resultado real de `vw_dim_vendedor` após a execução completa da pipeline:
+Resultado real das 9 views criadas pelo notebook `notebooks/03_gold/14_gold_views.ipynb`, após a execução completa da pipeline.
 
-![Saída de dim_vendedor](diagrams/exemplo_saida_gold.png)
+### Dimensões
 
-Amostra de `vw_dim_cliente`:
+**vw_dim_cliente**
 
-| customer_id | nome_cliente | segmento_cliente | porte_cliente | cidade | estado_uf | regiao | status_cliente |
-|---|---|---|---|---|---|---|---|
-| C0001 | Cliente 1 | Não informado | Grande | Florianópolis | SC | Sul | Não informado |
-| C0002 | Cliente 2 | Educação | Grande | Curitiba | PR | Sul | Ativo |
-| C0003 | Cliente 3 | Varejo | Não informado | Curitiba | PR | Sul | Não informado |
-| C0004 | Cliente 4 | Saúde | Não informado | Uberlândia | MG | Sudeste | Não informado |
+![vw_dim_cliente](diagrams/gold_outputs/vw_dim_cliente.png)
+
+**vw_dim_vendedor**
+
+![vw_dim_vendedor](diagrams/gold_outputs/vw_dim_vendedor.png)
+
+**vw_dim_produto**
+
+![vw_dim_produto](diagrams/gold_outputs/vw_dim_produto.png)
+
+**vw_dim_canal**
+
+![vw_dim_canal](diagrams/gold_outputs/vw_dim_canal.png)
+
+**vw_dim_regiao**
+
+![vw_dim_regiao](diagrams/gold_outputs/vw_dim_regiao.png)
+
+**vw_dim_tempo**
+
+![vw_dim_tempo](diagrams/gold_outputs/vw_dim_tempo.png)
+
+### Fatos
+
+**vw_fact_pedido_item**
+
+![vw_fact_pedido_item](diagrams/gold_outputs/vw_fact_pedido_item.png)
+
+**vw_fact_entrega**
+
+![vw_fact_entrega](diagrams/gold_outputs/vw_fact_entrega.png)
+
+**vw_fact_ocorrencia**
+
+![vw_fact_ocorrencia](diagrams/gold_outputs/vw_fact_ocorrencia.png)
 
 ## Documentação
 
