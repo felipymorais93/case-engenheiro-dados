@@ -21,3 +21,11 @@ O campo `cost` em `logistica_entregas.json` contém o valor `"unknown"` em 10 re
 Após alterar o tipo de uma coluna (`preco_lista`, `cost`) e reexecutar a escrita com `mode("overwrite")` sobre uma tabela já existente, o Delta Lake rejeitou a operação com `DELTA_FAILED_TO_MERGE_FIELDS`, mesmo com o tipo final da coluna sendo o mesmo do anterior.
 
 **Ajuste aplicado:** inclusão de `.option("overwriteSchema", "true")` em todas as operações de escrita do projeto (29 ocorrências, nos 14 notebooks), prevenindo o mesmo erro em qualquer re-execução futura após alteração de schema.
+
+## 4. Chave de região incompatível entre vendedores e regiões
+
+A coluna `regiao_id` em `silver_regioes` foi construída a partir de `regiao_geografica` (nome completo, como "Sul", "Nordeste"), enquanto `regional_code` em `silver_vendedores` usa a sigla curta (`S`, `NE`). O join entre as duas tabelas na construção de `dim_vendedor` usava essas colunas como chave e, como os formatos eram diferentes, nenhuma linha casava. Todos os vendedores ficavam com `regiao` nula.
+
+O problema só foi identificado ao inspecionar a saída de `dim_vendedor`: a coluna `regiao` aparecia nula em 100% das linhas, mesmo com `regional_code` preenchido na origem.
+
+**Ajuste aplicado:** `regiao_id` em `silver_regioes` passou a usar a sigla normalizada (`regional_code`, em caixa alta), no mesmo formato já usado em `silver_vendedores.regional_code`. O nome completo da região permanece disponível na coluna `regiao_nome`, usada na exibição final de `dim_vendedor` e `dim_regiao`.
